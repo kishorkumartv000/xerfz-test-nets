@@ -30,6 +30,16 @@
         },
         "retryMobileSearchAmount": 2
     },
+    "activitySettings": {
+        "delayBeforeActivity": {
+            "min": "40s",
+            "max": "120s"
+        },
+        "delayAfterActivity": {
+            "min": "30s",
+            "max": "60s"
+        }
+    },
     "logExcludeFunc": [
         "SEARCH-CLOSE-TABS"
     ],
