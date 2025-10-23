@@ -170,6 +170,13 @@ Edit `src/config.json` to customize behavior.
 | `searchSettings.searchDelay`             | Delay between searches | `3-5 minutes` |
 | `searchSettings.retryMobileSearchAmount` |  Mobile retry attempts |           `2` |
 
+### Activity Settings
+
+| Setting                              |                      Description |   Default |
+| ------------------------------------ | -------------------------------: | --------: |
+| `activitySettings.delayBeforeActivity` | Delay before each activity | `1s` |
+| `activitySettings.delayAfterActivity`  |  Delay after each activity | `2s` |
+
 ### Advanced Settings
 
 | Setting                   |                 Description |             Default |
