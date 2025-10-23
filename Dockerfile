@@ -22,8 +22,8 @@ RUN rm -rf node_modules \
     && npm ci --omit=dev --ignore-scripts \
     && npm cache clean --force
 
-# Install all Playwright browsers (including Chromium) in correct location
-RUN npx playwright install --with-deps \
+# ✅ Install only Chromium in the correct location for Playwright
+RUN npx playwright install chromium --with-deps \
     && rm -rf /root/.cache /tmp/* /var/tmp/*
 
 ###############################################################################
