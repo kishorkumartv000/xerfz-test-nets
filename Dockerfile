@@ -72,6 +72,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxss1 \
     libxtst6 \
     libdouble-conversion3 \
+    xvfb \
+    git \
+    curl \
+    unzip \
+    wget \
+    nano \
+    zip \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Copy compiled application and dependencies from builder stage
@@ -84,6 +91,6 @@ COPY --chmod=755 src/run_daily.sh ./src/run_daily.sh
 COPY --chmod=644 src/crontab.template /etc/cron.d/microsoft-rewards-cron.template
 COPY --chmod=755 entrypoint.sh /usr/local/bin/entrypoint.sh
 
-# Entrypoint handles TZ, initial run toggle, cron templating & launch
+# Entrypoint just runs your script (no cron setup)
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["sh", "-c", "echo 'Container started; cron is running.'"]
+CMD ["sh", "-c", "echo 'Container started; run_daily.sh executed manually.'"]
