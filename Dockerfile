@@ -22,8 +22,8 @@ RUN rm -rf node_modules \
     && npm ci --omit=dev --ignore-scripts \
     && npm cache clean --force
 
-# Install Chromium Headless Shell, and cleanup
-RUN npx playwright install --with-deps --only-shell chromium \
+# Install all Playwright browsers (including Chromium) in correct location
+RUN npx playwright install --with-deps \
     && rm -rf /root/.cache /tmp/* /var/tmp/*
 
 ###############################################################################
@@ -41,8 +41,6 @@ ENV NODE_ENV=production \
 
 # Install minimal system libraries required for Chromium headless to run
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    cron \
-    gettext-base \
     tzdata \
     ca-certificates \
     libglib2.0-0 \
@@ -88,7 +86,6 @@ COPY --from=builder /usr/src/microsoft-rewards-script/node_modules ./node_module
 
 # Copy runtime scripts with proper permissions from the start
 COPY --chmod=755 src/run_daily.sh ./src/run_daily.sh
-COPY --chmod=644 src/crontab.template /etc/cron.d/microsoft-rewards-cron.template
 COPY --chmod=755 entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Entrypoint just runs your script (no cron setup)
