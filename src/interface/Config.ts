@@ -10,11 +10,22 @@ export interface Config {
     searchOnBingLocalQueries: boolean;
     globalTimeout: number | string;
     searchSettings: ConfigSearchSettings;
+    activitySettings?: ConfigActivitySettings;
     logExcludeFunc: string[];
     webhookLogExcludeFunc: string[];
     proxy: ConfigProxy;
     webhook: ConfigWebhook;
     conclusionWebhook?: ConfigWebhook; // Optional secondary webhook for final summary
+}
+
+export interface ConfigActivitySettings {
+    delayBeforeActivity: ConfigDelay;
+    delayAfterActivity: ConfigDelay;
+}
+
+export interface ConfigDelay {
+    min: number | string;
+    max: number | string;
 }
 
 export interface ConfigSaveFingerprint {
