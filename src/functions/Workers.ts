@@ -132,7 +132,12 @@ export class Workers {
                     activityPage = await this.bot.browser.utils.getLatestTab(activityPage)
                 }
 
-                await this.bot.utils.wait(1000)
+                // Before activity delay
+                if (this.bot.config.activitySettings?.delayBeforeActivity) {
+                    await this.bot.utils.wait(Math.floor(this.bot.utils.randomNumber(this.bot.utils.stringToMs(this.bot.config.activitySettings.delayBeforeActivity.min), this.bot.utils.stringToMs(this.bot.config.activitySettings.delayBeforeActivity.max))))
+                } else {
+                    await this.bot.utils.wait(1000)
+                }
 
                 if (activityPage.url() !== activityInitial) {
                     await activityPage.goto(activityInitial)
@@ -217,8 +222,12 @@ export class Workers {
                         break
                 }
 
-                // Cooldown
-                await this.bot.utils.wait(2000)
+                // After activity delay
+                if (this.bot.config.activitySettings?.delayAfterActivity) {
+                    await this.bot.utils.wait(Math.floor(this.bot.utils.randomNumber(this.bot.utils.stringToMs(this.bot.config.activitySettings.delayAfterActivity.min), this.bot.utils.stringToMs(this.bot.config.activitySettings.delayAfterActivity.max))))
+                } else {
+                    await this.bot.utils.wait(2000)
+                }
 
             } catch (error) {
                 this.bot.log(this.bot.isMobile, 'ACTIVITY', 'An error occurred:' + error, 'error')
