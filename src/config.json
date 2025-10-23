@@ -10,8 +10,8 @@
         "desktop": false
     },
     "workers": {
-        "doDailySet": false,
-        "doMorePromotions": false,
+        "doDailySet": true,
+        "doMorePromotions": true,
         "doPunchCards": false,
         "doDesktopSearch": true,
         "doMobileSearch": true,
